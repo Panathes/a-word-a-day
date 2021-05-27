@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./storage/store";
 import * as serviceWorker from "./serviceWorker";
 import Application from "./view/Application";
+import  List  from './view/List';
 import Counter from "./view/Counter";
 import Error404 from "./view/Error404";
 import "./index.css";
@@ -16,6 +17,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={Application} />
           <Route exact path="/counter" component={Counter} />
+          <Route exact path="/list" component={List} />
           <Route component={Error404} />
         </Switch>
       </Router>
