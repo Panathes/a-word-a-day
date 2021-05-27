@@ -1,6 +1,7 @@
 import React from "react";
 import { TranslationItem } from "./TranslationItem";
 import { Header } from "../Header/Header";
+import { Filter } from "../Filter/Filter"
 import { v4 as uuid } from "uuid";
 import { DateTime } from "luxon";
 
@@ -54,8 +55,9 @@ const words: Translation[] = [
 
 export const Dictionary: React.FunctionComponent<Props> = () => {
   return (
-    <div>
+    <div className="container">
       <Header />
+      <Filter />
       <div className="columns">
         <div className="column is-half is-offset-one-quarter">
           {words.map((word) => (
