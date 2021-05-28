@@ -1,4 +1,4 @@
-# a-word-a-day
+# react-starter
 
 ## Composition
 
@@ -14,6 +14,6 @@ Please **fork**, then clone this repository.
 
 ## Development
 
-- API: `cd api && npm start`
-- SPA: `cd spa && npm start`
-- e2e: `cd e2e && npm test`
+- API: `cd api && npm i && npm start`
+- SPA: `cd spa && npm i && npm start`
+- e2e: `cd e2e && npm i && npm test`
