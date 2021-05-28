@@ -1,4 +1,4 @@
-import { Filter } from "./Filter"
+import { TimeframeSelection } from "./TimeframeSelection"
 
 
-export default Filter;
+export default TimeframeSelection;
