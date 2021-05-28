@@ -36,12 +36,14 @@ const durations: TimeFrame[] = [
 export const TimeframeSelection: React.FunctionComponent<Props> = ({setTimeFrame}) => {
         const [index, setIndex] = useState(0)
         function incrementIndex() {
-          setIndex(Math.min(index + 1, durations.length - 1))
-          setTimeFrame(durations[index].duration)
+          const updatedIndex = Math.min(index + 1, durations.length - 1)
+          setIndex(updatedIndex)
+          setTimeFrame(durations[updatedIndex].duration)
         }
         function decrementIndex() {
-          setIndex(Math.max(index - 1, 0))
-          setTimeFrame(durations[index].duration)
+          const updatedIndex = Math.max(index - 1, 0)
+          setIndex(updatedIndex)
+          setTimeFrame(durations[updatedIndex].duration)
         }
         return (
           <div style={{ display: "flex",  justifyContent: "space-around"}}>

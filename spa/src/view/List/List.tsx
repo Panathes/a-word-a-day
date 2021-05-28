@@ -25,7 +25,7 @@ const words: Translation[] = [
     id: uuid(),
     word: "back pack",
     translatedWord: "sac à dos",
-    createdAt: DateTime.fromObject({ year: 2020, month: 5, day: 28 }),
+    createdAt: DateTime.fromObject({ year: 2020, month: 5, day: 29 }),
   },
   {
     id: uuid(),
@@ -58,6 +58,8 @@ export const Dictionary: React.FunctionComponent<Props> = () => {
   const [timeFrame, setTimeFrame] = useState(Duration.fromObject({days: 1}))
   function filterTranslationsByDate({createdAt}: Translation): boolean {
     const today = DateTime.local()
+    return createdAt >= today.minus(timeFrame)
+
     const interval = Interval.before(today, timeFrame)
     return interval.contains(createdAt)
   }
