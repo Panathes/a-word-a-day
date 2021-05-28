@@ -59,9 +59,6 @@ export const Dictionary: React.FunctionComponent<Props> = () => {
   function filterTranslationsByDate({createdAt}: Translation): boolean {
     const today = DateTime.local()
     return createdAt >= today.minus(timeFrame)
-
-    const interval = Interval.before(today, timeFrame)
-    return interval.contains(createdAt)
   }
   return (
     <div className="container">

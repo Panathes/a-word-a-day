@@ -47,13 +47,13 @@ export const TimeframeSelection: React.FunctionComponent<Props> = ({setTimeFrame
         }
         return (
           <div style={{ display: "flex",  justifyContent: "space-around"}}>
-            <button className="button is-light" onClick={decrementIndex} disabled={ index === 0}>
+            <button className="button is-light" onClick={decrementIndex} disabled={ index === 0} data-e2e="time-frame-decrement">
               <span className="icon is-small">
                 <i className="fas fa-arrow-left"></i>
               </span>
             </button>
-            <p>{ durations[index].label }</p>
-            <button className="button is-light" onClick={incrementIndex} disabled={index === durations.length -1}>
+            <p data-e2e="time-frame-value">{ durations[index].label }</p>
+            <button className="button is-light" onClick={incrementIndex} disabled={index === durations.length -1} data-e2e="time-frame-increment">
               <span className="icon is-small">
                 <i className="fas fa-arrow-right"></i>
               </span>
