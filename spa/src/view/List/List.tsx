@@ -4,16 +4,21 @@ import { Header } from "../Header/Header";
 import { TimeframeSelection } from "../Filter/TimeframeSelection"
 import { v4 as uuid } from "uuid";
 import { DateTime, Duration, Interval } from "luxon";
+import { Translation } from "../../Domain/Interface/Translation"
+import { Detail } from '../Detail/Detail';
+import { getTranslatedItem } from "../../Domain/Localstorage/localStorageMethod"
 
 export interface Props {}
 
-export interface Translation {
-  id: string;
-  word: string; // Ajout d'une interface pour définir la langue et le mot
-  translatedWord: string;
-  createdAt: DateTime;
-}
+// export interface Translation {
+//   id: string;
+//   word: string; // Ajout d'une interface pour définir la langue et le mot
+//   translatedWord: string;
+//   createdAt: DateTime;
+// }
 
+const words: Translation[] = getTranslatedItem()
+/*
 const words: Translation[] = [
   {
     id: uuid(),
@@ -33,16 +38,16 @@ const words: Translation[] = [
     translatedWord: "ordinateur",
     createdAt: DateTime.fromObject({ year: 2021, month: 5, day: 15 }),
   },
-  {
-    id: uuid(),
-    word: "vert",
-    translatedWord: "green",
-    createdAt: DateTime.fromObject({ year: 2021, month: 5, day: 24 }),
-  },
-  {
-    id: uuid(),
-    word: "hope",
-    translatedWord: "espoir",
+    {
+      id: uuid(),
+      word: "vert",
+      translatedWord: "green",
+      createdAt: DateTime.fromObject({ year: 2021, month: 5, day: 24 }),
+    },
+    {
+      id: uuid(),
+      word: "hope",
+      translatedWord: "espoir",
     createdAt: DateTime.fromObject({ year: 2021, month: 4, day: 29 }),
   },
   {
@@ -51,9 +56,8 @@ const words: Translation[] = [
     translatedWord: "balle",
     createdAt: DateTime.fromObject({ year: 2021, month: 1, day: 27 }),
   },
-];
-
-
+];*/
+console.log(words)
 export const Dictionary: React.FunctionComponent<Props> = () => {
   const [timeFrame, setTimeFrame] = useState(Duration.fromObject({days: 1}))
   function filterTranslationsByDate({createdAt}: Translation): boolean {
@@ -73,12 +77,19 @@ export const Dictionary: React.FunctionComponent<Props> = () => {
           ))}
         </div>
       </div>
-      <button
+      <div className="modal">
+        <div className="modal-background"></div>
+        <div className="modal-content">
+          <Detail />
+        </div>
+        <button className="modal-close is-large" aria-label="close"></button>
+      </div>
+      {/* <button
         className="button is-success is-rounded"
         style={{ float: "right" }}
       >
         Ajouter
-      </button>
+      </button> */}
     </div>
   );
 };
