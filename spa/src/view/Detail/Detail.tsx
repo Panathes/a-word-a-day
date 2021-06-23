@@ -3,12 +3,14 @@ import { DateTime } from "luxon";
 // import { Translation } from "../List/List";
 import { Translation } from "../../Domain/Interface/Translation";
 import { v4 as uuid } from "uuid";
-import { getTranslatedItem, setItemInLocalStorage } from "../../Domain/Localstorage/localStorageMethod";
+import { deserializeTranslation, serializeTranslation } from '../../Domain/Localstorage/serialize';
+import { LocalStorageDriver } from '../../storage/localStorageMethod';
 
 
 
 export interface Props {}
 
+const localStorageDriver = new  LocalStorageDriver("wordsTranslated", serializeTranslation, deserializeTranslation)
 
 export const Detail: React.FunctionComponent<Props> = () => {
     const [addWord, setWord] = useState("");
@@ -23,9 +25,9 @@ export const Detail: React.FunctionComponent<Props> = () => {
             translatedWord: addTranslatedWord,
             createdAt: date,
         }
-        const translatedWordsItem = getTranslatedItem()
+        const translatedWordsItem = localStorageDriver.getItems()
         translatedWordsItem.push(translation)
-        setItemInLocalStorage(translatedWordsItem, "wordsTranslated")
+        localStorageDriver.setItems(translatedWordsItem)
     }
  
     return (
