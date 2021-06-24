@@ -10,6 +10,7 @@ import Counter from "./view/Counter";
 import Error404 from "./view/Error404";
 import "./index.css";
 import Detail from "./view/Detail";
+import Challenge from "./view/Challenge";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.render(
           <Route exact path="/counter" component={Counter} />
           <Route exact path="/list" component={List} />
           <Route exact path="/detail" component={Detail} />
+          <Route exact path="/challenge" component={Challenge} />
           <Route component={Error404} />
         </Switch>
       </Router>
