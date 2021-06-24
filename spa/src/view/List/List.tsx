@@ -10,8 +10,8 @@ export const Dictionary: React.FunctionComponent<Props> = () => {
   return (
     <div className="container">
       <Header />
-      <FilterByTimeFrame
-        render={(translations) => (
+      <FilterByTimeFrame>
+        {(translations) => (
           <div className="columns">
             <div className="column is-half is-offset-one-quarter">
               {translations.map((word) => (
@@ -32,7 +32,7 @@ export const Dictionary: React.FunctionComponent<Props> = () => {
             </div>
           </div>
         )}
-      />
+      </FilterByTimeFrame>
     </div>
   );
 };

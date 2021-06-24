@@ -9,11 +9,9 @@ export const Challenge: React.FunctionComponent<Props> = () => {
   return (
     <div className="container">
       <Header />
-      <FilterByTimeFrame
-        render={(translations) => (
-          <RandomSelection translations={translations} />
-        )}
-      />
+      <FilterByTimeFrame>
+        {(translations) => <RandomSelection translations={translations} />}
+      </FilterByTimeFrame>
     </div>
   );
 };

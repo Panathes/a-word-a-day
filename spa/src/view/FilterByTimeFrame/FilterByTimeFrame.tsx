@@ -15,11 +15,11 @@ const localStorageDriver = new LocalStorageDriver(
 );
 
 export interface Props {
-  render(translations: Translation[]): React.ReactElement;
+  children(translations: Translation[]): React.ReactElement;
 }
 
 export const FilterByTimeFrame: React.FunctionComponent<Props> = ({
-  render,
+  children,
 }) => {
   const [timeFrame, setTimeFrame] = React.useState(
     Duration.fromObject({ days: 1 })
@@ -36,7 +36,7 @@ export const FilterByTimeFrame: React.FunctionComponent<Props> = ({
   return (
     <div>
       <TimeframeSelection setTimeFrame={setTimeFrame} />
-      {render(translationsSubset)}
+      {children(translationsSubset)}
     </div>
   );
 };
