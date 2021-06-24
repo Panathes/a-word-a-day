@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { Translation } from "../Interface/Translation";
+import { Translation } from "../Domain/Translation";
 
 type SerializedTranslation = Omit<Translation, 'createdAt'> & {
     createdAt: string,
@@ -9,7 +9,6 @@ type SerializedTranslation = Omit<Translation, 'createdAt'> & {
 export const deserializableTranslation = (
   serialyzedTranslation: SerializedTranslation
 ): Translation => {
-    console.log(serialyzedTranslation)
     return { 
         ...serialyzedTranslation,
         createdAt: DateTime.fromISO(serialyzedTranslation.createdAt),

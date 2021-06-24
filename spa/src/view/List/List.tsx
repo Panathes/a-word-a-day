@@ -2,66 +2,20 @@ import React, { useState } from "react";
 import { TranslationItem } from "./TranslationItem";
 import { Header } from "../Header/Header";
 import { TimeframeSelection } from "../Filter/TimeframeSelection"
-import { v4 as uuid } from "uuid";
-import { DateTime, Duration, Interval } from "luxon";
-import { Translation } from "../../Domain/Interface/Translation"
+import { DateTime, Duration } from "luxon";
+import { Translation } from "../../Domain/Translation"
 import { Detail } from '../Detail/Detail';
-import { deserializableTranslation, serializableTranslation } from '../../Domain/Localstorage/serialize';
-import { LocalStorageDriver } from "../../storage/localStorageMethod";
+import { deserializableTranslation, serializableTranslation } from '../../storage/serializeTranslation';
+import { LocalStorageDriver } from "../../utils/localStorageDriver";
 
 export interface Props {}
 
-// export interface Translation {
-//   id: string;
-//   word: string; // Ajout d'une interface pour définir la langue et le mot
-//   translatedWord: string;
-//   createdAt: DateTime;
-// }
 
 const localStorageDriver = new LocalStorageDriver("wordsTranslated", serializableTranslation, deserializableTranslation)
 
 
 const words: Translation[] = localStorageDriver.getItems()
-/*
-const words: Translation[] = [
-  {
-    id: uuid(),
-    word: "egg",
-    translatedWord: "oeuf",
-    createdAt: DateTime.fromObject({ year: 2021, month: 5, day: 28 }),
-  },
-  {
-    id: uuid(),
-    word: "back pack",
-    translatedWord: "sac à dos",
-    createdAt: DateTime.fromObject({ year: 2020, month: 5, day: 29 }),
-  },
-  {
-    id: uuid(),
-    word: "computer",
-    translatedWord: "ordinateur",
-    createdAt: DateTime.fromObject({ year: 2021, month: 5, day: 15 }),
-  },
-    {
-      id: uuid(),
-      word: "vert",
-      translatedWord: "green",
-      createdAt: DateTime.fromObject({ year: 2021, month: 5, day: 24 }),
-    },
-    {
-      id: uuid(),
-      word: "hope",
-      translatedWord: "espoir",
-    createdAt: DateTime.fromObject({ year: 2021, month: 4, day: 29 }),
-  },
-  {
-    id: uuid(),
-    word: "bullet",
-    translatedWord: "balle",
-    createdAt: DateTime.fromObject({ year: 2021, month: 1, day: 27 }),
-  },
-];*/
-console.log(words)
+
 export const Dictionary: React.FunctionComponent<Props> = () => {
   const [timeFrame, setTimeFrame] = useState(Duration.fromObject({days: 1}))
   function filterTranslationsByDate({createdAt}: Translation): boolean {

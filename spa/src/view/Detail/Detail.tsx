@@ -1,10 +1,9 @@
 import React, { useState} from 'react';
 import { DateTime } from "luxon";
-// import { Translation } from "../List/List";
-import { Translation } from "../../Domain/Interface/Translation";
+import { Translation } from "../../Domain/Translation";
 import { v4 as uuid } from "uuid";
-import { deserializableTranslation, serializableTranslation } from '../../Domain/Localstorage/serialize';
-import { LocalStorageDriver } from '../../storage/localStorageMethod';
+import { deserializableTranslation, serializableTranslation } from '../../storage/serializeTranslation';
+import { LocalStorageDriver } from '../../utils/localStorageDriver';
 
 
 

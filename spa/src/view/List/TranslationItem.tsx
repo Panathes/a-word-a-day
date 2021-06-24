@@ -1,6 +1,5 @@
 import React from "react";
-import { Translation } from "../../Domain/Interface/Translation";
-import { DateTime } from "luxon";
+import { Translation } from "../../Domain/Translation";
 
 export type Props = Translation;
 
