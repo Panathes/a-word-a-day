@@ -24,9 +24,7 @@ export const Detail: React.FunctionComponent<Props> = () => {
             translatedWord: addTranslatedWord,
             createdAt: date,
         }
-        const translatedWordsItem = localStorageDriver.getItems()
-        translatedWordsItem.push(translation)
-        localStorageDriver.setItems(translatedWordsItem)
+        localStorageDriver.addItem(translation)
     }
  
     return (
