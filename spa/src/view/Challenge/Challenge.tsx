@@ -5,7 +5,6 @@ import { DateTime, Duration } from "luxon";
 import { Translation } from "../../Domain/Translation"
 import { deserializableTranslation, serializableTranslation } from '../../storage/serializeTranslation';
 import { LocalStorageDriver } from "../../utils/localStorageDriver";
-import M from "minimatch";
 import { QuizCard } from "./QuizCard";
 import { findRandomTranslation } from "../../utils/translation";
 
@@ -23,12 +22,13 @@ const words: Translation[] = localStorageDriver.getItems()
 
 export const Challenge: React.FunctionComponent<Props> = () => {
   const [timeFrame, setTimeFrame] = useState(Duration.fromObject({days: 1}))
+  const filteredTranslations: Array<Translation> = words.filter(filterTranslationsByDate)
+  const [quizItem, setQuizItem] = useState(shuffleQuizItem())
 
   function filterTranslationsByDate({createdAt}: Translation): boolean {
     const today = DateTime.local()
     return createdAt >= today.minus(timeFrame)
   }
-  const filteredTranslations: Array<Translation> = words.filter(filterTranslationsByDate)
 
   function buildQuizItem(translation: Translation): QuizItem {
     if (Math.random() > 0.5) {
@@ -42,7 +42,14 @@ export const Challenge: React.FunctionComponent<Props> = () => {
       hidden: translation.translatedWord
     }
   }
-  const quizItem = buildQuizItem(findRandomTranslation(filteredTranslations))
+
+  function shuffleQuizItem(): QuizItem {
+    return buildQuizItem(findRandomTranslation(filteredTranslations))
+  }
+
+  function onClick(): void {
+    setQuizItem(shuffleQuizItem())
+  }
 
   return (
     <div className="container">
@@ -50,8 +57,9 @@ export const Challenge: React.FunctionComponent<Props> = () => {
       <TimeframeSelection setTimeFrame={setTimeFrame} />
       <div className="columns">
         <div className="column is-half is-offset-one-quarter">
-          <QuizCard quizItem={quizItem} />
+          <QuizCard quizItem={quizItem} key={quizItem.hidden}/>
         </div>
+        <button onClick={onClick}>shuffle</button>
       </div>
     </div>
   );
