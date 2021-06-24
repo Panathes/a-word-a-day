@@ -1,12 +1,12 @@
 import { DateTime } from "luxon";
 import { Translation } from "../Interface/Translation";
 
-type SerializedTranslation = Translation & {
+type SerializedTranslation = Omit<Translation, 'createdAt'> & {
     createdAt: string,
 } 
 
 
-export const deserializeTranslation = (
+export const deserializableTranslation = (
   serialyzedTranslation: SerializedTranslation
 ): Translation => {
     console.log(serialyzedTranslation)
@@ -16,9 +16,9 @@ export const deserializeTranslation = (
     }
 } 
 
-export const serializeTranslation = (translation: Translation): string => {
-    return JSON.stringify({
+export const serializableTranslation = (translation: Translation): SerializedTranslation => {
+    return {
         ...translation,
         createdAt: translation.createdAt.toISO(),
-    });
+    };
 }

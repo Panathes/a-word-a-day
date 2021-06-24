@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 export class LocalStorageDriver<T, S> {
   constructor(
     private keyName: string,
-    private serialyzeFunction: (t: T) => string,
+    private serialyzeFunction: (t: T) => S,
     private deserializeFunction: (s: S) => T
   ) {}
 

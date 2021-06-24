@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 import { DateTime, Duration, Interval } from "luxon";
 import { Translation } from "../../Domain/Interface/Translation"
 import { Detail } from '../Detail/Detail';
-import { deserializeTranslation, serializeTranslation } from '../../Domain/Localstorage/serialize';
+import { deserializableTranslation, serializableTranslation } from '../../Domain/Localstorage/serialize';
 import { LocalStorageDriver } from "../../storage/localStorageMethod";
 
 export interface Props {}
@@ -18,7 +18,7 @@ export interface Props {}
 //   createdAt: DateTime;
 // }
 
-const localStorageDriver = new LocalStorageDriver("wordsTranslated", serializeTranslation, deserializeTranslation)
+const localStorageDriver = new LocalStorageDriver("wordsTranslated", serializableTranslation, deserializableTranslation)
 
 
 const words: Translation[] = localStorageDriver.getItems()
