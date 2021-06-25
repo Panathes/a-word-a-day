@@ -31,12 +31,13 @@ export const Detail: React.FunctionComponent<Props> = () => {
         <React.Fragment>
             <div>
                 <label>Anglais</label>
-                <input className="input is-small" type="text" placeholder={addWord} onChange={(e) => setWord(e.target.value)}></input>
+                <input data-e2e="english_word" className="input is-small" type="text" placeholder={addWord} onChange={(e) => setWord(e.target.value)}></input>
                 <label>Français</label>
-                <input className="input is-small" type="text" placeholder={addTranslatedWord} onChange={(e) => setTranslatedWord(e.target.value)}></input>
+                <input data-e2e="french_word" className="input is-small" type="text" placeholder={addTranslatedWord} onChange={(e) => setTranslatedWord(e.target.value)}></input>
                 <button type="submit"
                     className="button is-success is-rounded"
                     style={{ float: "right", marginTop: "200px" }}
+                    data-e2e="submit_translation"
                     onClick={addWordInStorage}
                     >
                     Ajouter

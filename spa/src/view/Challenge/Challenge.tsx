@@ -10,7 +10,12 @@ export const Challenge: React.FunctionComponent<Props> = () => {
     <div className="container">
       <Header />
       <FilterByTimeFrame>
-        {(translations) => <RandomSelection translations={translations} />}
+        {(translations) => {
+            if (translations.length === 0) {
+                return <p>Pas de mots a afficher !</p>
+            }
+            return <RandomSelection translations={translations} />}
+        }
       </FilterByTimeFrame>
     </div>
   );
